@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calité Fútbol – Camisetas Exclusivas</title>
+  <style>
+    /* Reset básico */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #1a1a1a;
+    }
+    header nav a {
+      margin: 0 15px;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #007bff;
+    }
+    .hero {
+      background: url('ruta-de-tu-imagen-hero.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      color: #fff;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    .hero h2 {
+      position: relative;
+      font-size: 2.5rem;
+      margin: 0 20px;
+    }
+    .products {
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .product-card {
+      background-color: #fff;
+      border: 1px solid #eee;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform .2s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+    }
+    .product-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .product-card p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .btn {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 18px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color .2s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+    .gallery-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+    }
+    .gallery-modal img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .gallery-modal .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      margin-top: 40px;
+    }
+    footer .contact {
+      margin-bottom: 10px;
+    }
+    footer input, footer textarea {
+      padding: 8px;
+      margin: 5px 0;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    footer button {
+      display: block;
+      margin: 10px auto;
+    }
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Calité Fútbol</h1>
+    <nav>
+      <a href="#productos">Tienda</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Viste tu pasión con la mejor calidad</h2>
+  </section>
+
+  <section id="productos" class="products">
+    <!-- Repite .product-card por cada camiseta -->
+    <div class="product-card">
+      <img src="camiseta1.jpg" alt="Camiseta equipo 1">
+      <h3>Camiseta Pro Equipo 1</h3>
+      <p>Convierte cada juego en una experiencia.</p>
+      <button class="btn" onclick="comprar('Camiseta Pro Equipo 1')">Comprar</button>
+      <button class="btn btn-secondary" onclick="verGaleria('camiseta1')">Más fotos</button>
+    </div>
+    <div class="product-card">
+      <img src="camiseta2.jpg" alt="Camiseta equipo 2">
+      <h3>Camiseta Pro Equipo 2</h3>
+      <p>Diseño icónico para auténticos hinchas.</p>
+      <button class="btn" onclick="comprar('Camiseta Pro Equipo 2')">Comprar</button>
+      <button class="btn btn-secondary" onclick="verGaleria('camiseta2')">Más fotos</button>
+    </div>
+    <!-- ... -->
+  </section>
+
+  <div id="gallery" class="gallery-modal" onclick="cerrarGaleria(event)">
+    <span class="close-btn">&times;</span>
+    <img id="gallery-img" src="" alt="Detalles de camiseta">
+  </div>
+
+  <footer id="contacto">
+    <div class="contact">
+      <h3>¿Tienes preguntas? Escribe a nuestro soporte:</h3>
+      <form onsubmit="enviarFormulario(event)">
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Tu mensaje..." required></textarea>
+        <button class="btn" type="submit">Enviar mensaje</button>
+      </form>
+    </div>
+    <p>&copy; 2025 Calité Fútbol. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function verGaleria(id) {
+      // Ajusta con las rutas correctas
+      const imgSrc = id + '_detalle1.jpg'; 
+      document.getElementById('gallery-img').src = imgSrc;
+      document.getElementById('gallery').style.display = 'flex';
+    }
+    function cerrarGaleria(e) {
+      if (e.target.id === 'gallery' || e.target.classList.contains('close-btn')) {
+        document.getElementById('gallery').style.display = 'none';
+      }
+    }
+    function comprar(producto) {
+      alert('Has seleccionado: ' + producto + '. Próximamente podrás completar la compra.');
+    }
+    function enviarFormulario(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      alert('¡Gracias, ' + nombre + '! Tu mensaje ha sido enviado.');
+      // Aquí podrías integrar con tu backend o servicio de correo
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
